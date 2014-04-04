@@ -1,0 +1,43 @@
+<style type="text/css">
+.normal {
+  width: 150px;
+  border: 10px ;
+}
+
+table {
+  font: 1.4em Arial, Helvetica, sans-serif;
+  border: 10px solid #333;
+  border-collapse
+  text-align: center;
+
+  margin: 35px; padding: 75px
+}
+
+</style>
+
+
+
+<table>
+	<tr> 
+		<th>Id</th>
+		<th>titulo</th>
+		<th>fecha creacion</th>
+		<th>fecha modificacion</th>
+
+		<th>cant comments</th>
+		<th>cant likes</th>
+		<th>cant pal</th>
+	</tr>
+	<% @posts.each do |post| %>
+		<tr>
+			<th><%=post.id%></th>
+			<th><%=post.title%></th>
+			<th><%=post.created_at%></th>
+			<th><%=post.update_at.to_date%></th>
+			<th><%=post.comments.count%></th>
+			<th><%=post.like%></th>
+			<th><%=post.content.split(" ").count%></th>
+		</tr>
+	<% end %>
+	<a href="/">back</a>
+</table>

@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+
+h1 {
+  clear: both;
+  font-size:4.5em;
+  padding: 100px 0;
+  background-color:  #40E0D0;
+   font-family:"Times New Roman", Times, serif;
+ font-style:oblique;
+
+
+  text-align: center
+
+}
+
+
+
+

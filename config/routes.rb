@@ -13,7 +13,19 @@ Blog::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-   root 'posts#administrator'
+
+  resources :posts
+  resources :posts do
+    resources :comments
+  end
+get "/posts/like/:id" => "posts#like"
+get "/posts/delete/:id" => "posts#delete"
+get "/posts/update/:id" => "posts#update"
+get 'post/administrador' => 'posts#administrador'
+get "post/reporte" => "posts#reporte"
+#get "post/post/index" => "posts#back_to_index"
+   root 'posts#index'
+
   # Example resource route with options:
   #   resources :products do
   #     member do

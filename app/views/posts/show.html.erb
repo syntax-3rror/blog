@@ -1,0 +1,28 @@
+<%= @post.title %> <br/>
+<%= @post.content %>
+
+<% @post.comments.each do |comment| %> 
+  <p>
+    <strong><%=comment.user%></strong><br/>
+    <%= comment.content %><br/>
+    <%= comment.created_at.to_date %><br/>
+  </p>
+<% end %>
+
+
+<h2>Agregar un comentario:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+	<p>
+	  <%= f.label :user %><br />
+	  <%= f.text_area :user %>
+	</p>
+	<p>
+	  <%= f.label :content %><br />
+	  <%= f.text_area :content %>
+	</p>
+<p>
+  <%= f.submit%>
+
+</p>
+
+<% end %>
