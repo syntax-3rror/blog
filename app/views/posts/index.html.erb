@@ -98,7 +98,9 @@
 		<th> date</th>	
 		<th>title</th>	
 		<th>content</th>
+		<th>categoria</th>
 		<th>like</th>
+		<th>dislike</th>
 		
 	</tr>
 	<% @posts.each do |post| %>
@@ -110,9 +112,11 @@
 
 	<td>
 	<%= post.content %> </td>
+		<td>
+	<%= post.category %> </td>
 	<td> <%= post.like %> <a href="/posts/like/<%=post.id%>/">Like</a> </td>
 	
-	
+	<td>  <a href="/posts/dislike/<%=post.id%>/">dislike</a> </td>
 	</tr>
 
    

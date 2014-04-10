@@ -24,6 +24,7 @@ get "/posts/update/:id" => "posts#update"
 get 'post/administrador' => 'posts#administrador'
 get "post/reporte" => "posts#reporte"
 #get "post/post/index" => "posts#back_to_index"
+get "/posts/dislike/:id" => "posts#dislike"
    root 'posts#index'
 
   # Example resource route with options:

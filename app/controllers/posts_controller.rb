@@ -1,9 +1,12 @@
 class PostsController < ApplicationController
 
 def index
-		 if params[:search]
+		if params[:search]
+
 	     	@posts = Post.search(params[:search]).reorder("created_at DESC")
-	    else
+	   elsif 	params[:searchCategory] 
+      @posts = Post.where(:category , "%#{params[:searchCategory]}%")
+	    	else
 			@posts = Post.reorder("created_at DESC")
 		end
 	end
@@ -24,6 +27,11 @@ def index
 	def like
 		@post = Post.find(params[:id])
 		@post.addLike
+		redirect_to posts_path
+	end
+	def dislike
+		@post = Post.find(params[:id])
+		@post.dislike
 		redirect_to posts_path
 	end
 
@@ -49,7 +57,9 @@ def index
 		
 	end
 
-
+	def history
+    @history_posts = HistoryPost.where(:post_id=>params[:post_id])
+  end
 	def edit
 		@post = Post.find(params[:id])
 	end
@@ -57,7 +67,7 @@ def index
 	def update
 		@post = Post.find(params[:id])
 
-	  	if @post.update(params[:post].permit(:title, :content))
+	  	if @post.update(params[:post].permit(:title, :content, :category))
 	    	redirect_to '/', notice: 'The post has been  sucessfully updated'
 	  	else
 	  		flash[:notice] = "No se pudo actualizar el post"
@@ -67,6 +77,6 @@ def index
 
 	private
 	  def post_params
-	    params.require(:post).permit(:title, :content)
+	    params.require(:post).permit(:title, :content, :category)
 	  end
 end
